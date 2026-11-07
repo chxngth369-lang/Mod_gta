@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ModForge — The Next-Gen Gaming Mod Marketplace</title>
+  <meta name="description" content="Discover, download and sell the best game mods. Graphics overhauls, weapons, skins, utilities and total conversions — all virus-scanned and one click away." />
+  <meta name="theme-color" content="#0b0f19" />
+
+  <!-- Google Fonts: Outfit (UI/display) + Rajdhani (tech/numeric accents) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Local styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============ PRELOADER ============ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-inner">
+      <div class="preloader-logo"><i class="fa-solid fa-cube"></i></div>
+      <div class="preloader-bar"><span></span></div>
+      <p class="preloader-text">INITIALIZING MODFORGE</p>
+    </div>
+  </div>
+
+  <!-- ============ CUSTOM CURSOR ============ -->
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="navbar" id="navbar">
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="#home" class="logo" aria-label="ModForge home">
+        <span class="logo-icon"><i class="fa-solid fa-cube"></i></span>
+        <span class="logo-text">MOD<b>FORGE</b></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#mods" class="nav-link">Browse Mods</a></li>
+        <li><a href="#categories" class="nav-link">Categories</a></li>
+        <li><a href="#community" class="nav-link">Community</a></li>
+        <li><a href="#pricing" class="nav-link">Pricing</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <label class="nav-search" for="navSearch">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="search" id="navSearch" placeholder="Search mods..." autocomplete="off" aria-label="Search mods" />
+          <kbd>/</kbd>
+        </label>
+
+        <button class="cart-btn" id="cartBtn" aria-label="Open cart">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="badge" id="cartCount">0</span>
+        </button>
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+      <canvas id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="hero-grid-bg" aria-hidden="true"></div>
+      <div class="glow-orb orb-1" aria-hidden="true"></div>
+      <div class="glow-orb orb-2" aria-hidden="true"></div>
+
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <span class="eyebrow reveal"><span class="pulse-dot"></span> 186K+ mods live &middot; Season 7 update</span>
+
+          <h1 class="hero-title reveal">
+            <span class="line">Forge Your</span>
+            <span class="line"><span class="gradient-text">Ultimate</span> Game</span>
+          </h1>
+
+          <p class="hero-sub reveal">
+            Discover, install and sell game-changing mods. Next-gen graphics, total overhauls,
+            legendary weapons and skins — virus-scanned, version-tracked and one click away.
+          </p>
+
+          <div class="hero-ctas reveal">
+            <a href="#mods" class="btn btn-primary btn-lg"><i class="fa-solid fa-rocket"></i> Explore Mods</a>
+            <button class="btn btn-ghost btn-lg" id="uploadBtn"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Mod</button>
+          </div>
+
+          <div class="hero-trust reveal">
+            <div class="avatars">
+              <img src="https://i.pravatar.cc/80?img=11" alt="Gamer avatar" />
+              <img src="https://i.pravatar.cc/80?img=32" alt="Gamer avatar" />
+              <img src="https://i.pravatar.cc/80?img=45" alt="Gamer avatar" />
+              <img src="https://i.pravatar.cc/80?img=58" alt="Gamer avatar" />
+            </div>
+            <div class="trust-text">
+              <span class="trust-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+              <strong>Trusted by 3.8M gamers</strong>
+              <small>4.9/5 from 120K+ reviews</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive floating preview card -->
+        <div class="hero-visual reveal" style="--d:350ms">
+          <div class="preview-card" id="previewCard">
+            <div class="preview-media">
+              <img src="https://picsum.photos/seed/neon-city/720/450" alt="Neon Nights Reshade preview" />
+              <span class="card-tag tag-trending"><i class="fa-solid fa-fire"></i> #1 Trending</span>
+              <div class="preview-play"><i class="fa-solid fa-play"></i></div>
+            </div>
+            <div class="preview-body">
+              <div class="preview-head">
+                <div>
+                  <h3>Neon Nights Reshade Ultra</h3>
+                  <p>Cyberpunk 2077 &middot; by <span>@NeonVisions</span></p>
+                </div>
+                <div class="preview-rating"><i class="fa-solid fa-star"></i> 4.9</div>
+              </div>
+              <div class="install-progress">
+                <div class="install-label">
+                  <span><i class="fa-solid fa-bolt"></i> Installing</span>
+                  <span id="installPct">0%</span>
+                </div>
+                <div class="install-track"><span id="installBar"></span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="float-chip chip-1">
+            <i class="fa-solid fa-arrow-trend-up"></i>
+            <div><strong>+12.4K</strong><small>downloads today</small></div>
+          </div>
+          <div class="float-chip chip-2">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div><strong>Virus-Free</strong><small>scanned &amp; verified</small></div>
+          </div>
+          <div class="float-chip chip-3">
+            <i class="fa-solid fa-users"></i>
+            <div><strong>214K</strong><small>gamers online</small></div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#categories" class="scroll-indicator" aria-label="Scroll down"><span></span></a>
+    </section>
+
+    <!-- ============ SUPPORTED GAMES MARQUEE ============ -->
+    <div class="marquee" aria-label="Supported games">
+      <div class="marquee-track" id="marqueeTrack">
+        <span>CYBERPUNK 2077</span><i class="fa-solid fa-diamond"></i>
+        <span>SKYRIM SE</span><i class="fa-solid fa-diamond"></i>
+        <span>ELDEN RING</span><i class="fa-solid fa-diamond"></i>
+        <span>GTA V</span><i class="fa-solid fa-diamond"></i>
+        <span>BALDUR'S GATE 3</span><i class="fa-solid fa-diamond"></i>
+        <span>STARFIELD</span><i class="fa-solid fa-diamond"></i>
+        <span>MINECRAFT</span><i class="fa-solid fa-diamond"></i>
+        <span>FALLOUT 4</span><i class="fa-solid fa-diamond"></i>
+        <span>THE WITCHER 3</span><i class="fa-solid fa-diamond"></i>
+        <span>RED DEAD REDEMPTION 2</span><i class="fa-solid fa-diamond"></i>
+      </div>
+    </div>
+
+    <!-- ============ CATEGORIES ============ -->
+    <section class="section" id="categories">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag"><i class="fa-solid fa-layer-group"></i> Categories</span>
+          <h2 class="section-title">Browse by <span class="gradient-text">Category</span></h2>
+          <p class="section-sub">From photoreal lighting to 40-hour questlines — jump straight to the mods that matter to you.</p>
+        </div>
+
+        <div class="category-grid">
+          <button class="category-tile reveal" data-category="graphics" style="--accent:#00f0ff">
+            <span class="cat-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+            <h3>Graphics</h3>
+            <p>ReShades, ENBs &amp; 4K textures</p>
+            <span class="cat-count">42,180 mods</span>
+            <i class="fa-solid fa-arrow-right cat-arrow"></i>
+          </button>
+          <button class="category-tile reveal" data-category="overhaul" style="--accent:#a855f7">
+            <span class="cat-icon"><i class="fa-solid fa-layer-group"></i></span>
+            <h3>Overhauls</h3>
+            <p>Total conversions &amp; gameplay</p>
+            <span class="cat-count">18,940 mods</span>
+            <i class="fa-solid fa-arrow-right cat-arrow"></i>
+          </button>
+          <button class="category-tile reveal" data-category="weapons" style="--accent:#ff3d81">
+            <span class="cat-icon"><i class="fa-solid fa-crosshairs"></i></span>
+            <h3>Weapons</h3>
+            <p>Arsenals, animations &amp; sounds</p>
+            <span class="cat-count">26,310 mods</span>
+            <i class="fa-solid fa-arrow-right cat-arrow"></i>
+          </button>
+          <button class="category-tile reveal" data-category="skins" style="--accent:#10f5a0">
+            <span class="cat-icon"><i class="fa-solid fa-shirt"></i></span>
+            <h3>Skins</h3>
+            <p>Armor, outfits &amp; cosmetics</p>
+            <span class="cat-count">51,720 mods</span>
+            <i class="fa-solid fa-arrow-right cat-arrow"></i>
+          </button>
+          <button class="category-tile reveal" data-category="utilities" style="--accent:#fbbf24">
+            <span class="cat-icon"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+            <h3>Utilities</h3>
+            <p>Managers, HUDs &amp; fixes</p>
+            <span class="cat-count">12,450 mods</span>
+            <i class="fa-solid fa-arrow-right cat-arrow"></i>
+          </button>
+          <button class="category-tile reveal" data-category="all" style="--accent:#60a5fa">
+            <span class="cat-icon"><i class="fa-solid fa-border-all"></i></span>
+            <h3>All Mods</h3>
+            <p>Explore the full library</p>
+            <span class="cat-count">186,500+ mods</span>
+            <i class="fa-solid fa-arrow-right cat-arrow"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURED MODS (CORE) ============ -->
+    <section class="section section-mods" id="mods">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag"><i class="fa-solid fa-fire"></i> Featured</span>
+          <h2 class="section-title">Trending <span class="gradient-text">Mods</span></h2>
+          <p class="section-sub">Hand-picked by our curators and ranked by the community. Updated every hour.</p>
+        </div>
+
+        <!-- Filter bar -->
+        <div class="filter-bar reveal">
+          <div class="pills" id="filterPills" role="tablist" aria-label="Filter mods by category">
+            <span class="pill-indicator" aria-hidden="true"></span>
+            <button class="pill active" data-filter="all" role="tab" aria-selected="true"><i class="fa-solid fa-border-all"></i>All<span class="pill-count"></span></button>
+            <button class="pill" data-filter="graphics" role="tab" aria-selected="false"><i class="fa-solid fa-wand-magic-sparkles"></i>Graphics<span class="pill-count"></span></button>
+            <button class="pill" data-filter="overhaul" role="tab" aria-selected="false"><i class="fa-solid fa-layer-group"></i>Overhauls<span class="pill-count"></span></button>
+            <button class="pill" data-filter="weapons" role="tab" aria-selected="false"><i class="fa-solid fa-crosshairs"></i>Weapons<span class="pill-count"></span></button>
+            <button class="pill" data-filter="skins" role="tab" aria-selected="false"><i class="fa-solid fa-shirt"></i>Skins<span class="pill-count"></span></button>
+            <button class="pill" data-filter="utilities" role="tab" aria-selected="false"><i class="fa-solid fa-screwdriver-wrench"></i>Utilities<span class="pill-count"></span></button>
+          </div>
+
+          <div class="filter-tools">
+            <label class="search-box" for="modSearch">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="search" id="modSearch" placeholder="Search mod, creator or game..." autocomplete="off" aria-label="Search mods" />
+            </label>
+            <div class="select-wrap">
+              <select id="sortSelect" aria-label="Sort mods">
+                <option value="popular">Most Popular</option>
+                <option value="rating">Top Rated</option>
+                <option value="newest">Recently Updated</option>
+                <option value="price-low">Price: Low → High</option>
+                <option value="price-high">Price: High → Low</option>
+              </select>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+
+        <p class="results-meta" id="resultsMeta" aria-live="polite"></p>
+
+        <!-- Cards are rendered by script.js -->
+        <div class="mods-grid" id="modsGrid"></div>
+
+        <div class="empty-state" id="emptyState" hidden>
+          <i class="fa-solid fa-ghost"></i>
+          <h3>No mods found</h3>
+          <p>Try a different keyword or reset your filters.</p>
+          <button class="btn btn-ghost btn-sm" id="resetFilters"><i class="fa-solid fa-rotate-left"></i> Reset filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STATS ============ -->
+    <section class="stats-section" aria-label="Platform statistics">
+      <div class="container stats-grid">
+        <div class="stat-card reveal">
+          <span class="stat-icon"><i class="fa-solid fa-download"></i></span>
+          <div class="stat-number"><span class="counter" data-target="248">0</span><span class="suffix">M+</span></div>
+          <p>Total Downloads</p>
+        </div>
+        <div class="stat-card reveal">
+          <span class="stat-icon"><i class="fa-solid fa-user-astronaut"></i></span>
+          <div class="stat-number"><span class="counter" data-target="52840">0</span><span class="suffix">+</span></div>
+          <p>Active Creators</p>
+        </div>
+        <div class="stat-card reveal">
+          <span class="stat-icon"><i class="fa-solid fa-cubes"></i></span>
+          <div class="stat-number"><span class="counter" data-target="186500">0</span><span class="suffix">+</span></div>
+          <p>Available Mods</p>
+        </div>
+        <div class="stat-card reveal">
+          <span class="stat-icon"><i class="fa-solid fa-users"></i></span>
+          <div class="stat-number"><span class="counter" data-target="3.8" data-decimals="1">0</span><span class="suffix">M</span></div>
+          <p>Community Members</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS / CREATOR SPOTLIGHT ============ -->
+    <section class="section" id="community">
+      <div class="glow-orb orb-3" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag"><i class="fa-solid fa-comments"></i> Community</span>
+          <h2 class="section-title">Loved by <span class="gradient-text">Modders &amp; Gamers</span></h2>
+          <p class="section-sub">Top creators build their careers here. Millions of players power up their games every day.</p>
+        </div>
+
+        <div class="carousel reveal" id="carousel">
+          <div class="carousel-viewport">
+            <div class="carousel-track" id="carouselTrack"><!-- Rendered by JS --></div>
+          </div>
+          <div class="carousel-controls">
+            <button class="carousel-btn" id="prevBtn" aria-label="Previous testimonial"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="carousel-dots" id="carouselDots"></div>
+            <button class="carousel-btn" id="nextBtn" aria-label="Next testimonial"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRICING ============ -->
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag"><i class="fa-solid fa-gem"></i> Pricing</span>
+          <h2 class="section-title">Level Up Your <span class="gradient-text">Membership</span></h2>
+          <p class="section-sub">Free forever for players. Go Pro for max speed, or become a Creator and get paid for your work.</p>
+        </div>
+
+        <div class="billing-toggle reveal">
+          <span class="active" data-billing-label="monthly">Monthly</span>
+          <button class="toggle" id="billingToggle" role="switch" aria-checked="false" aria-label="Toggle yearly billing"><span></span></button>
+          <span data-billing-label="yearly">Yearly <em>-20%</em></span>
+        </div>
+
+        <div class="pricing-grid">
+          <!-- Free -->
+          <article class="price-card reveal">
+            <span class="plan-icon"><i class="fa-solid fa-gamepad"></i></span>
+            <h3 class="plan-name">Explorer</h3>
+            <p class="plan-desc">Everything you need to start modding.</p>
+            <div class="plan-price"><span class="currency">$</span><span class="amount" data-monthly="0" data-yearly="0">0</span><span class="period">/mo</span></div>
+            <p class="plan-note" data-monthly-note="Free forever" data-yearly-note="Free forever">Free forever</p>
+            <ul class="plan-features">
+              <li><i class="fa-solid fa-check"></i>Unlimited free mod downloads</li>
+              <li><i class="fa-solid fa-check"></i>1-click mod manager</li>
+              <li><i class="fa-solid fa-check"></i>Community forums access</li>
+              <li><i class="fa-solid fa-check"></i>Standard download speed</li>
+              <li class="off"><i class="fa-solid fa-xmark"></i>Early access releases</li>
+              <li class="off"><i class="fa-solid fa-xmark"></i>Ad-free experience</li>
+            </ul>
+            <button class="btn btn-ghost btn-block" data-plan="Explorer">Get Started Free</button>
+          </article>
+
+          <!-- Pro -->
+          <article class="price-card featured reveal">
+            <span class="popular-badge"><i class="fa-solid fa-crown"></i> Most Popular</span>
+            <span class="plan-icon"><i class="fa-solid fa-bolt"></i></span>
+            <h3 class="plan-name">Pro Gamer</h3>
+            <p class="plan-desc">Max speed, zero ads, early access.</p>
+            <div class="plan-price"><span class="currency">$</span><span class="amount" data-monthly="6.99" data-yearly="5.59">6.99</span><span class="period">/mo</span></div>
+            <p class="plan-note" data-monthly-note="Billed monthly · cancel anytime" data-yearly-note="Billed $67.08 yearly">Billed monthly · cancel anytime</p>
+            <ul class="plan-features">
+              <li><i class="fa-solid fa-check"></i>Everything in Explorer</li>
+              <li><i class="fa-solid fa-check"></i>Uncapped 10 Gbps downloads</li>
+              <li><i class="fa-solid fa-check"></i>Ad-free experience</li>
+              <li><i class="fa-solid fa-check"></i>Early access to premium drops</li>
+              <li><i class="fa-solid fa-check"></i>Cloud-synced load orders</li>
+              <li><i class="fa-solid fa-check"></i>15% off all premium mods</li>
+            </ul>
+            <button class="btn btn-primary btn-block" data-plan="Pro Gamer"><i class="fa-solid fa-bolt"></i> Go Pro</button>
+          </article>
+
+          <!-- Creator -->
+          <article class="price-card reveal">
+            <span class="plan-icon"><i class="fa-solid fa-palette"></i></span>
+            <h3 class="plan-name">Creator</h3>
+            <p class="plan-desc">Publish, sell &amp; grow your audience.</p>
+            <div class="plan-price"><span class="currency">$</span><span class="amount" data-monthly="14.99" data-yearly="11.99">14.99</span><span class="period">/mo</span></div>
+            <p class="plan-note" data-monthly-note="Billed monthly · cancel anytime" data-yearly-note="Billed $143.88 yearly">Billed monthly · cancel anytime</p>
+            <ul class="plan-features">
+              <li><i class="fa-solid fa-check"></i>Everything in Pro Gamer</li>
+              <li><i class="fa-solid fa-check"></i>Sell mods — keep 90% revenue</li>
+              <li><i class="fa-solid fa-check"></i>Advanced analytics dashboard</li>
+              <li><i class="fa-solid fa-check"></i>Version control &amp; auto-updates</li>
+              <li><i class="fa-solid fa-check"></i>Priority review in under 24h</li>
+              <li><i class="fa-solid fa-check"></i>Verified creator badge</li>
+            </ul>
+            <button class="btn btn-ghost btn-block" data-plan="Creator">Start Creating</button>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#home" class="logo">
+            <span class="logo-icon"><i class="fa-solid fa-cube"></i></span>
+            <span class="logo-text">MOD<b>FORGE</b></span>
+          </a>
+          <p>The home of next-gen game modding. Join 3.8M players and 52K creators shaping the future of play.</p>
+
+          <form class="newsletter" id="newsletterForm" novalidate>
+            <input type="email" placeholder="Enter your email" aria-label="Email address" required />
+            <button class="btn btn-primary" type="submit"><i class="fa-solid fa-paper-plane"></i> Subscribe</button>
+          </form>
+
+          <div class="socials">
+            <a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+            <a href="#" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
+            <a href="#" aria-label="Reddit"><i class="fa-brands fa-reddit-alien"></i></a>
+            <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Marketplace</h4>
+          <ul>
+            <li><a href="#mods">Browse Mods</a></li>
+            <li><a href="#mods">Trending</a></li>
+            <li><a href="#mods">New Releases</a></li>
+            <li><a href="#pricing">Premium Mods</a></li>
+            <li><a href="#categories">Collections</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Creators</h4>
+          <ul>
+            <li><a href="#">Upload a Mod</a></li>
+            <li><a href="#">Creator Studio</a></li>
+            <li><a href="#">Revenue Program</a></li>
+            <li><a href="#">API Docs</a></li>
+            <li><a href="#">Brand Kit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Install Guide</a></li>
+            <li><a href="#">Safety &amp; Scanning</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">System Status</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> ModForge Inc. Built with <i class="fa-solid fa-heart heart"></i> for gamers.</p>
+        <p class="footer-legal"><a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Cookies</a></p>
+        <p class="status"><span class="status-dot"></span> All systems operational</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ MOD DETAIL MODAL ============ -->
+  <div class="modal" id="modModal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Mod details">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel" id="modalPanel">
+      <button class="modal-close" data-close aria-label="Close details"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-body" id="modalBody"><!-- Rendered by JS --></div>
+    </div>
+  </div>
+
+  <!-- ============ CART DRAWER ============ -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-label="Shopping cart">
+    <div class="drawer-header">
+      <h3><i class="fa-solid fa-cart-shopping"></i> Your Cart <span id="drawerCount">(0)</span></h3>
+      <button class="icon-btn" id="drawerClose" aria-label="Close cart"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="drawer-body" id="cartItems"></div>
+    <div class="drawer-footer">
+      <div class="drawer-total"><span>Subtotal</span><strong id="cartTotal">$0.00</strong></div>
+      <p class="drawer-note"><i class="fa-solid fa-lock"></i> Secure checkout &middot; Instant delivery to your library</p>
+      <button class="btn btn-primary btn-block" id="checkoutBtn"><i class="fa-solid fa-credit-card"></i> Checkout</button>
+    </div>
+  </aside>
+
+  <!-- ============ TOASTS ============ -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
